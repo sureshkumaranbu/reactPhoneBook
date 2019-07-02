@@ -4,14 +4,13 @@ import AuthContext from '../../context/auth/authContext';
 import ContactContext from '../../context/contact/contactContext'
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ title, icon}) => {
+const Navbar = ({title}) => {
     const authContext = useContext(AuthContext);
     const contactContext = useContext(ContactContext);
 
     const { clearContacts } = contactContext;
     const { logout, isAuthenticated, user } = authContext;
     const onLogout = () => {
-        console.log("logout")
         logout();
         clearContacts();
         
@@ -37,7 +36,7 @@ const Navbar = ({ title, icon}) => {
     return (
         <div className="navbar bg-primary">
             <h1>
-                <i className={icon} /> {title}
+                {title}
             </h1>
             <ul>
                 { isAuthenticated ? authLinks : guestLinks }
@@ -48,7 +47,6 @@ const Navbar = ({ title, icon}) => {
 }
 
 Navbar.defaultProps = {
-    title: 'Contact Keeper',
-    icon: 'fas fa-id-card-alt  '
+    title: 'Phone Book',
 }
 export default Navbar;
